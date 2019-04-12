@@ -1,0 +1,31 @@
+Arguments: 
+  D:\Program Files\nodejs\node.exe D:\Program Files (x86)\Yarn\bin\yarn.js add --dev @fortawesome/fontawesome-free
+
+PATH: 
+  C:\Users\lfrprazeres\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\lfrprazeres\bin;C:\Program Files (x86)\Razer Chroma SDK\bin;C:\Program Files\Razer Chroma SDK\bin;C:\Ruby24-x64\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;D:\Program Files\nodejs;D:\Program Files (x86)\Yarn\bin;C:\Program Files\Git\cmd;C:\Program Files\Microsoft VS Code\bin;C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;C:\WINDOWS\System32\OpenSSH;C:\WINDOWS\system32\config\systemprofile\AppData\Local\Microsoft\WindowsApps;C:\Users\lfrprazeres\AppData\Local\Microsoft\WindowsApps;C:\Users\lfrprazeres\AppData\Roaming\Dashlane\4.6.6.23032\bin\Firefox_Extension\{442718d9-475e-452a-b3e1-fb1ee16b8e9f}\components;C:\Users\lfrprazeres\AppData\Roaming\Dashlane\5.17.0.23881\bin\Firefox_Extension\{442718d9-475e-452a-b3e1-fb1ee16b8e9f}\components;C:\Users\lfrprazeres\AppData\Roaming\Dashlane\5.17.0.23881\ucrt;C:\Users\lfrprazeres\AppData\Roaming\Dashlane\5.17.0.23881\bin\Qt;C:\Users\lfrprazeres\AppData\Roaming\Dashlane\5.17.0.23881\ucrt;C:\Users\lfrprazeres\AppData\Roaming\Dashlane\5.17.0.23881\bin\Ssl;C:\Users\lfrprazeres\AppData\Roaming\npm;C:\Users\lfrprazeres\AppData\Local\Yarn\bin;C:\Program Files\Java\jdk1.8.0_181\bin;C:\wamp64\bin\mysql\mysql5.7.24\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
+
+Yarn version: 
+  1.7.0
+
+Node version: 
+  8.11.3
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: EPERM: operation not permitted, lstat 'C:\www\little-projects\musics\node_modules\@fortawesome\fontawesome-free'
+
+npm manifest: 
+  {
+    "name": "musics",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT"
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

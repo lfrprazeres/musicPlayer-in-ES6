@@ -1,0 +1,53 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.musics-container {
+    align-items: center;
+    display: flex;
+    justify-content: space-evenly;
+    height: 100%;
+    width: 100vw;
+}
+
+.musics-container .music-container{
+    align-items: center;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 200px;
+    width: 200px;
+}
+
+button {
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    margin: 10px 0;
+    outline: none;
+    transition: .2s ease;
+    padding: 10px 30px;
+}
+
+button > i {
+    margin: 0 10px 0 0;
+}
+
+.playButton{
+    background-color: #F2711C;
+}
+.playButton:hover {
+    background-color: #F4933E;
+}
+
+button:active {
+    transform: translateY(3px);
+}
+
+.stopButton {
+    background-color: 
+}
