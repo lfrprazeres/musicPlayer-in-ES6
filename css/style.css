@@ -65,8 +65,10 @@ button:active {
 }
 
 .controlButtons{
-    position: fixed;
+    align-items: center;
     bottom: 0%;
+    display: flex;
+    position: fixed;
 }
 
 .controlButtons > button {
@@ -92,4 +94,8 @@ button:active {
 
 .pauseButton:hover {
     background-color: #F4933E;
+}
+
+.footerButton{
+    display: none;
 }
