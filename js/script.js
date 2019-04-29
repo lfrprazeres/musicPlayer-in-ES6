@@ -20,12 +20,26 @@ let album = {
 //generic play
 function play(audio,button){
     audio.play()
+    updateLine(audio,audio.duration)
     button.innerHTML = '<i class="fas fa-pause"></i>'
     button.className = "playerButton pauseButton"
     playerfooterButton.className = "playerButton pauseButton"
     playerfooterButton.innerHTML = '<i class="fas fa-pause"></i>'
     // show the music name in the footer
     document.querySelector(".musicName").innerHTML = "Tocando: " + album.musics[currentMusicIndex].label
+}
+
+// function to update the footer line (music duration)
+function updateLine(audioActual,audioDuration){
+    setTimeout(() => {
+    let line = document.querySelector(".musicDuration")
+    // calculate the line percent
+    let percent = (100 * audioActual.currentTime) / audioDuration
+    line.style.width = `${percent}%`
+    if(audioActual !== audioDuration && !document.querySelector(".music" + currentMusicIndex).paused){
+        updateLine(audioActual,audioDuration)
+    }
+    },100)
 }
 
 //generic pause
@@ -50,12 +64,7 @@ function stop(audio,button){
 
 // footer stop
 function footerStop(audio,button){
-    audio.pause()
-    audio.currentTime = 0
-    button.innerHTML = '<i class="fas fa-play"></i>'
-    button.className = "playerButton playButton footerButton"
-    playerfooterButton.className = "playerButton playButton"
-    playerfooterButton.innerHTML = '<i class="fas fa-play"></i>'
+    stop(audio,button)
     footer.style.display = "none"
 }
 
@@ -105,9 +114,6 @@ class Music {
                     let previousMusic = document.querySelector(".music" + currentMusicIndex)
                     let previousButton = previousMusic.parentElement.querySelector("button")
                     pause(previousMusic,previousButton)
-                    previousMusic.currentTime = 0
-                    previousButton.className = this.button.className = "playerButton playButton"
-                    previousButton.innerHTML = this.button.innerHTML = '<i class="fas fa-play"></i>'
                     currentMusicIndex = this.key
                 }
                 // play the music
@@ -115,13 +121,8 @@ class Music {
                 this.playing = !this.playing
 
             } else {
-                e.target.parentElement.querySelector("audio").pause()
-                this.button.innerHTML = '<i class="fas fa-play"></i>'
-                this.button.className = "playerButton playButton"
+                pause(e.target.parentElement.querySelector("audio"), this.button)
                 this.playing = !this.playing
-
-                playerfooterButton.innerHTML = '<i class="fas fa-play"></i>'
-                playerfooterButton.className = "playerButton playButton footerButton"
             }
         })
     }

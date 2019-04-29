@@ -73,6 +73,27 @@ footer{
     width: 100%;
 }
 
+footer::before{
+    background-color: #3F3F3F;
+    bottom: 0;
+    content: '';
+    height: 5px;
+    left: 0;
+    position: absolute;
+    width: 100%;
+}
+
+.musicDuration{
+    background-color: #4CAF50;
+    bottom: 0;
+    border: none;
+    content: '';
+    height: 5px;
+    left: 0;
+    position: absolute;
+    width: 0%;
+}
+
 footer > p {
     text-align: center;
 }
@@ -80,8 +101,10 @@ footer > p {
 .controlButtons{
     display: flex;
     justify-content: center;
+    position: relative;
     width: 250px;
 }
+
 .controlButtons >  button {
     margin: 10px 5px;
 }
