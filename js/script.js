@@ -53,18 +53,23 @@ function pause(audio,button){
 
 
 //generic stop
-function stop(audio,button){
-    audio.pause()
-    audio.currentTime = 0
-    button.innerHTML = '<i class="fas fa-play"></i>'
-    button.className = "playerButton playButton footerButton"
+function stop(){
+    // catching current Music
+    let currentMusic = document.querySelector(".music" + currentMusicIndex)
+    // catching the current music's button
+    let currentButton = currentMusic.parentElement.querySelector("button")
+    // stop the current music to change it
+    currentMusic.pause()
+    currentMusic.currentTime = 0
+    currentButton.innerHTML = '<i class="fas fa-play"></i>'
+    currentButton.className = "playerButton playButton footerButton"
     playerfooterButton.className = "playerButton playButton"
     playerfooterButton.innerHTML = '<i class="fas fa-play"></i>'
 }
 
 // footer stop
-function footerStop(audio,button){
-    stop(audio,button)
+function footerStop(){
+    stop()
     footer.style.display = "none"
 }
 
@@ -111,9 +116,7 @@ class Music {
             if (this.playing === false) {
                 // Reset previous button and pause previous music
                 if (currentMusicIndex !== this.key) {
-                    let previousMusic = document.querySelector(".music" + currentMusicIndex)
-                    let previousButton = previousMusic.parentElement.querySelector("button")
-                    stop(previousMusic,previousButton)
+                    stop()
                     currentMusicIndex = this.key
                 }
                 // play the music
@@ -169,22 +172,12 @@ playerfooterButton.addEventListener("click", () => {
 
 // set the click of stop button placed in the footer
 stopButton.addEventListener("click", () => {
-    // catching current Music
-    let currentMusic = document.querySelector(".music" + currentMusicIndex)
-    // catching the current music's button
-    let currentButton = currentMusic.parentElement.querySelector("button")
-    // stop the current music and remove the footer buttons
-    footerStop(currentMusic,currentButton)
+    footerStop()
 })
 
 // set the previous button event on the footer
 previousButton.addEventListener("click", () => {
-    // catching current Music
-    let currentMusic = document.querySelector(".music" + currentMusicIndex)
-    // catching the current music's button
-    let currentButton = currentMusic.parentElement.querySelector("button")
-    // stop the current music to change it
-    stop(currentMusic,currentButton)
+    stop()
     // validation: if is the first music change for the last
     if(currentMusicIndex === 0){
         currentMusicIndex = album.musics.length - 1
@@ -198,12 +191,7 @@ previousButton.addEventListener("click", () => {
 
 // set the next button event on the footer
 nextButton.addEventListener("click", () => {
-    // catching current Music
-    let currentMusic = document.querySelector(".music" + currentMusicIndex)
-    // catching the current music's button
-    let currentButton = currentMusic.parentElement.querySelector("button")
-    // stop the current music to change it
-    stop(currentMusic,currentButton)
+    stop()
     // validation: if is the first music change for the last
     if(currentMusicIndex === album.musics.length - 1){
         currentMusicIndex = 0
