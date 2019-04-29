@@ -113,7 +113,7 @@ class Music {
                 if (currentMusicIndex !== this.key) {
                     let previousMusic = document.querySelector(".music" + currentMusicIndex)
                     let previousButton = previousMusic.parentElement.querySelector("button")
-                    pause(previousMusic,previousButton)
+                    stop(previousMusic,previousButton)
                     currentMusicIndex = this.key
                 }
                 // play the music
