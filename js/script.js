@@ -202,7 +202,7 @@ nextButton.addEventListener("click", () => {
     // catching the current music's button
     let currentButton = currentMusic.parentElement.querySelector("button")
     // stop the current music to change it
-    currentMusic.stop(currentMusic,currentButton)
+    stop(currentMusic,currentButton)
     // validation: if is the first music change for the last
     if(currentMusicIndex === album.musics.length - 1){
         currentMusicIndex = 0
@@ -212,7 +212,6 @@ nextButton.addEventListener("click", () => {
     let nextPlayMusic = document.querySelector(".music" + currentMusicIndex)
     let nextPlayButton = nextPlayMusic.parentElement.querySelector("button")
     play(nextPlayMusic,nextPlayButton)
-    document.querySelector(".musicName").innerHTML = "Tocando: " + album.musics[currentMusicIndex].label
 })
 
 
