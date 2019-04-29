@@ -104,9 +104,6 @@ class Music {
             this.musicContainer.style.backgroundColor = "transparent"
         })
 
-        // validation to playing
-        this.playing = false
-
         // creating a p to put the music name
         this.musicName = document.createElement("p")
 
@@ -123,7 +120,7 @@ class Music {
                 footer.style.display = "flex"
             }
 
-            if (this.playing === false) {
+            if (this.sound.paused) {
                 // Reset previous button and pause previous music
                 if (currentMusicIndex !== this.key) {
                     stop()
@@ -131,11 +128,10 @@ class Music {
                 }
                 // play the music
                 play()
-                this.playing = !this.playing
 
             } else {
+                // pause the music
                 pause()
-                this.playing = !this.playing
             }
         })
     }
