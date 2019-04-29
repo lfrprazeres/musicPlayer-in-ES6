@@ -4,6 +4,7 @@ let container = document.querySelector(".musics-container")
 let playerfooterButton = document.querySelector(".playerButton.footerButton")
 let footer = document.querySelector("footer")
 let nextButton = document.querySelector(".nextButton")
+let previousButton = document.querySelector(".previousButton")
 let stopButton = document.querySelector(".stopButton")
 let currentMusicIndex = 0
 let album = {
@@ -145,7 +146,7 @@ stopButton.addEventListener("click", () => {
     let currentMusic = document.querySelector(".music" + currentMusicIndex)
     // catching the current music's button
     let currentButton = currentMusic.parentElement.querySelector("button")
-    // validation: if current music is playing
+    // change the button style for play button
     currentButton.className = "playerButton playButton"
     currentButton.innerHTML = '<i class="fas fa-play"></i>'
     footer.style.display = "none"
@@ -153,7 +154,59 @@ stopButton.addEventListener("click", () => {
     currentMusic.currentTime = 0
 })
 
+previousButton.addEventListener("click", () => {
+    // catching current Music
+    let currentMusic = document.querySelector(".music" + currentMusicIndex)
+    // catching the current music's button
+    let currentButton = currentMusic.parentElement.querySelector("button")
+    // change the button style for play button
+    currentButton.className = "playerButton playButton"
+    currentButton.innerHTML = '<i class="fas fa-play"></i>'
+    currentMusic.pause()
+    currentMusic.currentTime = 0
+    // validation: if is the first music change for the last
+    if(currentMusicIndex === 0){
+        currentMusicIndex = album.musics.length - 1
+    } else {
+        currentMusicIndex -= 1
+    }
+    let nextPlayMusic = document.querySelector(".music" + currentMusicIndex)
+    let nextPlayButton = nextPlayMusic.parentElement.querySelector("button")
+    nextPlayMusic.play()
+    nextPlayButton.className = "playerButton pauseButton"
+    nextPlayButton.innerHTML = '<i class="fas fa-pause"></i>'
+    playerfooterButton.className = "playerButton pauseButton"
+    playerfooterButton.innerHTML = '<i class="fas fa-pause"></i>'
+    document.querySelector(".musicName").innerHTML = "Tocando: " + album.musics[currentMusicIndex].label
+})
 
-// want to fix
+nextButton.addEventListener("click", () => {
+    // catching current Music
+    let currentMusic = document.querySelector(".music" + currentMusicIndex)
+    // catching the current music's button
+    let currentButton = currentMusic.parentElement.querySelector("button")
+    // change the button style for play button
+    currentButton.className = "playerButton playButton"
+    currentButton.innerHTML = '<i class="fas fa-play"></i>'
+    currentMusic.pause()
+    currentMusic.currentTime = 0
+    // validation: if is the first music change for the last
+    if(currentMusicIndex === album.musics.length - 1){
+        currentMusicIndex = 0
+    } else {
+        currentMusicIndex += 1
+    }
+    let nextPlayMusic = document.querySelector(".music" + currentMusicIndex)
+    let nextPlayButton = nextPlayMusic.parentElement.querySelector("button")
+    nextPlayMusic.play()
+    nextPlayButton.className = "playerButton pauseButton"
+    nextPlayButton.innerHTML = '<i class="fas fa-pause"></i>'
+    playerfooterButton.className = "playerButton pauseButton"
+    playerfooterButton.innerHTML = '<i class="fas fa-pause"></i>'
+    document.querySelector(".musicName").innerHTML = "Tocando: " + album.musics[currentMusicIndex].label
+})
+
+
+// need to fix
 console.log(document.querySelector(".musicName").style.width)
 document.querySelector(".musicName").style.width = `calc(100% - ${window.getComputedStyle(document.querySelector(".controlButtons")).width}`

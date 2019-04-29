@@ -48,7 +48,7 @@ button {
     padding: 10px 30px;
 }
 
-.nextButton,.beforeButton{
+.nextButton,.previousButton{
     background-color: transparent;
     padding: 0;
 }
