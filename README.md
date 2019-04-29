@@ -1,3 +1,5 @@
 # musicPlayer-in-ES6
 
-Pequeno projeto de criação de um player de música
+Little project about music player
+
+It can be acessed with the URL: https://lfrprazeres.github.io/musicPlayer-in-ES6/
