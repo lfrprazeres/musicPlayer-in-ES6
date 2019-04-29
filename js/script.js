@@ -18,11 +18,16 @@ let album = {
 }
 
 //generic play
-function play(audio,button){
-    audio.play()
-    updateLine(audio,audio.duration)
-    button.innerHTML = '<i class="fas fa-pause"></i>'
-    button.className = "playerButton pauseButton"
+function play(){
+    // catching current Music
+    let currentMusic = document.querySelector(".music" + currentMusicIndex)
+    // catching the current music's button
+    let currentButton = currentMusic.parentElement.querySelector("button")
+    // stop the current music to change it
+    currentMusic.play()
+    updateLine(currentMusic,currentMusic.duration)
+    currentButton.innerHTML = '<i class="fas fa-pause"></i>'
+    currentButton.className = "playerButton pauseButton"
     playerfooterButton.className = "playerButton pauseButton"
     playerfooterButton.innerHTML = '<i class="fas fa-pause"></i>'
     // show the music name in the footer
@@ -43,10 +48,15 @@ function updateLine(audioActual,audioDuration){
 }
 
 //generic pause
-function pause(audio,button){
-    audio.pause()
-    button.innerHTML = '<i class="fas fa-play"></i>'
-    button.className = "playerButton playButton footerButton"
+function pause(){
+    // catching current Music
+    let currentMusic = document.querySelector(".music" + currentMusicIndex)
+    // catching the current music's button
+    let currentButton = currentMusic.parentElement.querySelector("button")
+    // stop the current music to change it
+    currentMusic.pause()
+    currentButton.innerHTML = '<i class="fas fa-play"></i>'
+    currentButton.className = "playerButton playButton footerButton"
     playerfooterButton.className = "playerButton playButton"
     playerfooterButton.innerHTML = '<i class="fas fa-play"></i>'
 }
@@ -120,11 +130,11 @@ class Music {
                     currentMusicIndex = this.key
                 }
                 // play the music
-                play(e.target.parentElement.querySelector("audio"), this.button)
+                play()
                 this.playing = !this.playing
 
             } else {
-                pause(e.target.parentElement.querySelector("audio"), this.button)
+                pause()
                 this.playing = !this.playing
             }
         })
@@ -159,13 +169,12 @@ album.musics.map((sound, key) => {
 // set the click event to pause or play the current music in the footer's player button
 playerfooterButton.addEventListener("click", () => {
     let currentMusic = document.querySelector(".music" + currentMusicIndex)
-    let currentButton = currentMusic.parentElement.querySelector("button")
     // validation: if music is playing, pause it
     if (!currentMusic.paused) {
-        pause(currentMusic,currentButton)
+        pause()
 
     } else {
-        play(currentMusic,currentButton)
+        play()
     }
 
 })
@@ -184,9 +193,7 @@ previousButton.addEventListener("click", () => {
     } else {
         currentMusicIndex -= 1
     }
-    let nextPlayMusic = document.querySelector(".music" + currentMusicIndex)
-    let nextPlayButton = nextPlayMusic.parentElement.querySelector("button")
-    play(nextPlayMusic,nextPlayButton)
+    play()
 })
 
 // set the next button event on the footer
@@ -198,9 +205,7 @@ nextButton.addEventListener("click", () => {
     } else {
         currentMusicIndex += 1
     }
-    let nextPlayMusic = document.querySelector(".music" + currentMusicIndex)
-    let nextPlayButton = nextPlayMusic.parentElement.querySelector("button")
-    play(nextPlayMusic,nextPlayButton)
+    play()
 })
 
 
