@@ -43,23 +43,30 @@ header{
 button {
     border: none;
     border-radius: 10px;
-    color: white;
     cursor: pointer;
-    margin: 10px 0;
     outline: none;
     transition: .2s ease;
+}
+.footerButton, .musicButton {
+    color: white;
+    margin: 10px 0;
     padding: 10px 30px;
 }
 
 .chooseDirectoryContainer{
     align-items: center;
+    top: 40%;
     display: flex;
+    left: 50%;
     flex-direction: column;
+    position: absolute;
+    transform: translateX(-50%);
 }
 
 .chooseDirectoryButton{
     background-color: #4CAF50;
     height: 50px;
+    margin: 50px 0;
     transition: .2s ease;
     width: 200px;
 }
@@ -115,6 +122,7 @@ footer > p {
 .controlButtons{
     display: flex;
     height: 20%;
+    flex-direction: column;
     justify-content: center;
     position: relative;
     width: 250px;
@@ -131,10 +139,21 @@ footer > p {
     width: 100%;
 }
 
-.controlButtons >  button {
+.controlButtons div {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.basicButtons button {
+    display: flex;
     height: 40px;
+    justify-content: center;
     margin: 10px 5px;
-    width: 100px;
+    width: 50px;
+}
+
+.specificButtons button{
+    background-color: transparent;
 }
 
 .musicDuration{

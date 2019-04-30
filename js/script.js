@@ -7,6 +7,7 @@ let nextButton = document.querySelector(".nextButton")
 let previousButton = document.querySelector(".previousButton")
 let stopButton = document.querySelector(".stopButton")
 let vinylGif = document.querySelector(".vinylContainer img")
+let randomButton = document.querySelector(".randomButton")
 let currentMusicIndex = 0
 let album = {
     musics: []
@@ -43,7 +44,7 @@ function play() {
     currentMusic.play()
     updateLine(currentMusic, currentMusic.duration)
     currentButton.innerHTML = '<i class="fas fa-pause"></i>'
-    currentButton.className = "playerButton pauseButton"
+    currentButton.className = "musicButton playerButton pauseButton"
     playerfooterButton.className = "playerButton pauseButton"
     playerfooterButton.innerHTML = '<i class="fas fa-pause"></i>'
     // show the music name in the footer
@@ -74,7 +75,7 @@ function pause() {
     // stop the current music to change it
     currentMusic.pause()
     currentButton.innerHTML = '<i class="fas fa-play"></i>'
-    currentButton.className = "playerButton playButton footerButton"
+    currentButton.className = "musicButton playerButton playButton"
     playerfooterButton.className = "playerButton playButton"
     playerfooterButton.innerHTML = '<i class="fas fa-play"></i>'
     vinylGif.src = "./img/vinyl.png"
@@ -164,7 +165,7 @@ class Music {
         this.sound.src = music
 
         //Set PlayButton className
-        this.button.className = "playButton play" + key
+        this.button.className = "musicButton playButton play" + key
 
         // put a name in the musicContainer
         this.musicName.innerHTML = name
@@ -215,4 +216,10 @@ nextButton.addEventListener("click", () => {
         currentMusicIndex += 1
     }
     play()
+})
+
+randomButton.addEventListener("click", () => {
+    pause()
+    currentMusicIndex = Math.floor(Math.random() * album.musics.length)
+    play()  
 })
