@@ -9,6 +9,7 @@ let stopButton = document.querySelector(".stopButton")
 let vinylGif = document.querySelector(".vinylContainer img")
 let randomButton = document.querySelector(".randomButton")
 let currentMusicIndex = 0
+let soundVolume = 0.5
 let album = {
     musics: []
 }
@@ -19,7 +20,7 @@ filesChooser.addEventListener("change", (files) => {
     Array.from(files.target.files).forEach(audio => {
         fileURL = blob.createObjectURL(audio);
         // remove the type of the file (example: someAudio.mp3 become someAudio)
-        let realName = audio.name.substring(0,audio.name.length - 4)
+        let realName = audio.name.substring(0, audio.name.length - 4)
         const music = {
             music: fileURL,
             label: realName
@@ -36,6 +37,10 @@ filesChooser.addEventListener("change", (files) => {
 
 //generic play
 function play() {
+    if (footer.style.display == "" || footer.style.display == "none") {
+        footer.style.display = "flex"
+        container.style.width = "80%"
+    }
     // catching current Music
     let currentMusic = document.querySelector(".music" + currentMusicIndex)
     // catching the current music's button
@@ -50,7 +55,7 @@ function play() {
     // show the music name in the footer
     document.querySelector(".musicName").innerHTML = "Tocando: " + album.musics[currentMusicIndex].label
     vinylGif.src = "./gif/vinyl.gif"
-    
+
 }
 
 // function to update the footer line (music duration)
@@ -99,6 +104,7 @@ function stop() {
 
 // footer stop
 function footerStop() {
+    container.style.width = "90%"
     stop()
     footer.style.display = "none"
 }
@@ -136,9 +142,6 @@ class Music {
 
         // set button to play or pause the music
         this.button.addEventListener("click", (e) => {
-            if (footer.style.display == "" || footer.style.display == "none") {
-                footer.style.display = "flex"
-            }
 
             if (this.sound.paused) {
                 // Reset previous button and pause previous music
@@ -163,6 +166,7 @@ class Music {
         // set the sound tag className and source
         this.sound.className = "music" + key
         this.sound.src = music
+        this.sound.volume = `${soundVolume}`
 
         //Set PlayButton className
         this.button.className = "musicButton playButton play" + key
@@ -221,5 +225,5 @@ nextButton.addEventListener("click", () => {
 randomButton.addEventListener("click", () => {
     pause()
     currentMusicIndex = Math.floor(Math.random() * album.musics.length)
-    play()  
+    play()
 })
