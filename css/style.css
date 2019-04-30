@@ -48,6 +48,23 @@ button {
     padding: 10px 30px;
 }
 
+.chooseDirectoryContainer{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.chooseDirectoryButton{
+    background-color: #4CAF50;
+    height: 50px;
+    transition: .2s ease;
+    width: 200px;
+}
+
+.chooseDirectoryButton:hover {
+    background-color: #6ECF72;
+}
+
 .nextButton,.previousButton{
     background-color: transparent;
     padding: 0;

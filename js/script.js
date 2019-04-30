@@ -1,5 +1,5 @@
 
-
+let filesChooser = document.querySelector(".chooseDirectory")
 let container = document.querySelector(".musics-container")
 let playerfooterButton = document.querySelector(".playerButton.footerButton")
 let footer = document.querySelector("footer")
@@ -8,24 +8,44 @@ let previousButton = document.querySelector(".previousButton")
 let stopButton = document.querySelector(".stopButton")
 let currentMusicIndex = 0
 let album = {
-    musics: [{
-        music: "CountingCrows",
-        label: "Counting Crows - Mr Jones"
-    }, {
-        music: "MatchboxTwenty",
-        label: "Matchbox Twenty - Push"
-    }]
+    musics: []
 }
 
+let blob = window.URL || window.webkitURL;
+
+filesChooser.addEventListener("change", (e) => {
+    Array.from(e.target.files).forEach(audio => {
+        fileURL = blob.createObjectURL(audio);
+        const music = {
+            music: fileURL,
+            label: audio.name
+        }
+        album.musics.push(music)
+        console.log(fileURL)
+        // console.log(album.musics)
+        // let test = document.createElement("audio")
+        // test.className = "test"
+        // container.appendChild(test)
+        // test.src = fileURL
+        // test.play()
+        // init the musics
+    })
+    document.querySelector(".chooseDirectoryContainer").style.display = "none"
+    album.musics.map((sound, key) => {
+        let music = new Music()
+        music.init(sound.music, sound.label, key)
+    })
+})
+
 //generic play
-function play(){
+function play() {
     // catching current Music
     let currentMusic = document.querySelector(".music" + currentMusicIndex)
     // catching the current music's button
     let currentButton = currentMusic.parentElement.querySelector("button")
     // stop the current music to change it
     currentMusic.play()
-    updateLine(currentMusic,currentMusic.duration)
+    updateLine(currentMusic, currentMusic.duration)
     currentButton.innerHTML = '<i class="fas fa-pause"></i>'
     currentButton.className = "playerButton pauseButton"
     playerfooterButton.className = "playerButton pauseButton"
@@ -35,20 +55,20 @@ function play(){
 }
 
 // function to update the footer line (music duration)
-function updateLine(audioActual,audioDuration){
+function updateLine(audioActual, audioDuration) {
     setTimeout(() => {
-    let line = document.querySelector(".musicDuration")
-    // calculate the line percent
-    let percent = (100 * audioActual.currentTime) / audioDuration
-    line.style.width = `${percent}%`
-    if(audioActual !== audioDuration && !document.querySelector(".music" + currentMusicIndex).paused){
-        updateLine(audioActual,audioDuration)
-    }
-    },100)
+        let line = document.querySelector(".musicDuration")
+        // calculate the line percent
+        let percent = (100 * audioActual.currentTime) / audioDuration
+        line.style.width = `${percent}%`
+        if (audioActual !== audioDuration && !document.querySelector(".music" + currentMusicIndex).paused) {
+            updateLine(audioActual, audioDuration)
+        }
+    }, 100)
 }
 
 //generic pause
-function pause(){
+function pause() {
     // catching current Music
     let currentMusic = document.querySelector(".music" + currentMusicIndex)
     // catching the current music's button
@@ -63,7 +83,7 @@ function pause(){
 
 
 //generic stop
-function stop(){
+function stop() {
     // catching current Music
     let currentMusic = document.querySelector(".music" + currentMusicIndex)
     // catching the current music's button
@@ -78,7 +98,7 @@ function stop(){
 }
 
 // footer stop
-function footerStop(){
+function footerStop() {
     stop()
     footer.style.display = "none"
 }
@@ -142,7 +162,7 @@ class Music {
 
         // set the sound tag className and source
         this.sound.className = "music" + key
-        this.sound.src = "./musics/" + music + ".mp3"
+        this.sound.src = music
 
         //Set PlayButton className
         this.button.className = "playButton play" + key
@@ -155,12 +175,6 @@ class Music {
     }
 
 }
-
-// init the musics
-album.musics.map((sound, key) => {
-    let music = new Music()
-    music.init(sound.music, sound.label, key)
-})
 
 // set the click event to pause or play the current music in the footer's player button
 playerfooterButton.addEventListener("click", () => {
@@ -184,7 +198,7 @@ stopButton.addEventListener("click", () => {
 previousButton.addEventListener("click", () => {
     stop()
     // validation: if is the first music change for the last
-    if(currentMusicIndex === 0){
+    if (currentMusicIndex === 0) {
         currentMusicIndex = album.musics.length - 1
     } else {
         currentMusicIndex -= 1
@@ -196,7 +210,7 @@ previousButton.addEventListener("click", () => {
 nextButton.addEventListener("click", () => {
     stop()
     // validation: if is the first music change for the last
-    if(currentMusicIndex === album.musics.length - 1){
+    if (currentMusicIndex === album.musics.length - 1) {
         currentMusicIndex = 0
     } else {
         currentMusicIndex += 1

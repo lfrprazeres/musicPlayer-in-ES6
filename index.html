@@ -12,7 +12,21 @@
 <body>
     <header> Music Player! </header>
     <div class="musics-container">
-
+        <div class="chooseDirectoryContainer">
+            <h2> Choose your favorite playlist folder! </h2>
+            <button class="chooseDirectoryButton" onclick='document.querySelector(".chooseDirectory").click()'>
+                    <i class="fas fa-folder-open"></i>
+                <input 
+                    type="file" 
+                    class="chooseDirectory"
+                    style="display: none"
+                    accept=".mp3" 
+                    onchange="console.log(document.querySelector('.chooseDirectory').files)" 
+                    webkitdirectory 
+                    directory 
+                    multiple/>
+            </button>
+        </div>
     </div>
     <footer data-width="50%">
         <div class="controlButtons">
