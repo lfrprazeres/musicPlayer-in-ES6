@@ -20,8 +20,7 @@
                     type="file" 
                     class="chooseDirectory"
                     style="display: none"
-                    accept=".mp3" 
-                    onchange="console.log(document.querySelector('.chooseDirectory').files)" 
+                    accept=".mp3"
                     webkitdirectory 
                     directory 
                     multiple/>
@@ -29,14 +28,17 @@
         </div>
     </div>
     <footer data-width="50%">
+        <div class="vinylContainer">
+            <img src="gif/vinyl.gif" autoplay="false"  />
+        </div>
+        <p class="musicName"></p>
         <div class="controlButtons">
             <button class="previousButton footerButton"><i class="fa fa-step-backward"></i></button>
             <button class="playerButton pauseButton footerButton"><i class="fas fa-pause"></i> </button>
             <button class="stopButton footerButton"><i class="fas fa-stop"></i></button>
             <button class="nextButton footerButton"><i class="fa fa-step-forward"></i></button>
+            <hr class="musicDuration"/>
         </div>
-        <hr class="musicDuration"/>
-        <p class="musicName"></p>
     </footer>
 <script src="js/script.js"></script>
 </body>

@@ -21,6 +21,7 @@ header{
 .musics-container {
     align-items: center;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-evenly;
     height: 100%;
 }
@@ -33,7 +34,9 @@ header{
     flex-direction: column;
     justify-content: center;
     height: 200px;
+    margin: 20px 10px;
     transition: .2s ease;
+    padding: 10px;
     width: 200px;
 }
 
@@ -84,13 +87,41 @@ button:active {
 footer{
     align-items: center;
     background-color: #1D1D1D;
-    bottom: 0%;
+    bottom: 0;
+    right: 0%;
+    height: 100%;
     display: none;
+    flex-direction: column;
+    justify-content: center;
     position: fixed;
+    width: 20%;
+}
+
+
+
+footer > p {
+    text-align: center;
     width: 100%;
 }
 
-footer::before{
+.vinylContainer{
+    width: 80%
+}
+
+.vinylContainer > img {
+    width: 100%;
+}
+
+.controlButtons{
+    display: flex;
+    height: 20%;
+    justify-content: center;
+    position: relative;
+    width: 250px;
+}
+
+
+.controlButtons::before{
     background-color: #3F3F3F;
     bottom: 0;
     content: '';
@@ -98,6 +129,12 @@ footer::before{
     left: 0;
     position: absolute;
     width: 100%;
+}
+
+.controlButtons >  button {
+    height: 40px;
+    margin: 10px 5px;
+    width: 100px;
 }
 
 .musicDuration{
@@ -109,21 +146,6 @@ footer::before{
     left: 0;
     position: absolute;
     width: 0%;
-}
-
-footer > p {
-    text-align: center;
-}
-
-.controlButtons{
-    display: flex;
-    justify-content: center;
-    position: relative;
-    width: 250px;
-}
-
-.controlButtons >  button {
-    margin: 10px 5px;
 }
 .stopButton {
     background-color: #DA574F;
